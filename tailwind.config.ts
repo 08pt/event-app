@@ -7,11 +7,32 @@ const config: Config = {
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
+    colors: {
+      bgColor: "#800020",
+      btnColor: "#E5E4E2",
+      dBtn: "#FFD700",
+      tColor: "#f5fffa",
+    },
+    fontFamily: {
+      ffOne: ["Graphik", "sans-serif"],
+      ffTwo: ["Merriweather", "serif"],
+    },
     extend: {
-      backgroundImage: {
-        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-conic":
-          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+      spacing: {
+        "8xl": "96rem",
+        "9xl": "128rem",
+      },
+      borderRadius: {
+        "4xl": "2rem",
+      },
+      animation: {
+        marquee: "marquee 15s linear infinite",
+      },
+      keyframes: {
+        marquee: {
+          "0%": { transform: "translateX(100%)" },
+          "100%": { transform: "translateX(-100%)" },
+        },
       },
     },
   },
