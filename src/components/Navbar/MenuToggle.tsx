@@ -6,7 +6,7 @@ interface MenuToggleProps {
   handleToggle: () => void;
 }
 
-const MenuToggle: React.FC<MenuToggleProps> = ({ isOpen, handleToggle }) => {
+const MenuToggle: React.FC<MenuToggleProps> = ({ handleToggle }) => {
   return (
     <button className="md:hidden text-2xl" onClick={handleToggle}>
       <FaBars />
