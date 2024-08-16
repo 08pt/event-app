@@ -3,11 +3,23 @@ import React, { useState } from "react";
 import Logo from "./Logo";
 import NavItem from "./NavItem";
 import { FaTimes, FaBars } from "react-icons/fa";
+import Dropdown from "../Dropdown";
 
 const navItems = [
   { name: "Home", href: "/" },
   { name: "About", href: "/about" },
   { name: "Contact", href: "/contact" },
+  {
+    name: "Event",
+    href: "/event",
+    dropdown: [
+      { name: "About Beca", href: "/event/about-beca" },
+      { name: "Agenda", href: "/event/agenda" },
+      { name: "Exhibition", href: "/event/exhibition" },
+      { name: "Nomination", href: "/event/nomination" },
+      { name: "Registration", href: "/event/registration" },
+    ],
+  },
 ];
 
 const Navbar: React.FC = () => {
@@ -22,12 +34,18 @@ const Navbar: React.FC = () => {
         <div className="hidden md:flex flex-1 justify-center">
           <div className="flex space-x-4 font-extrabold uppercase">
             {navItems.map((item) => (
-              <NavItem key={item.name} href={item.href} name={item.name} />
+              <div key={item.name} className="relative">
+                {item.dropdown ? (
+                  <Dropdown label={item.name} items={item.dropdown} />
+                ) : (
+                  <NavItem key={item.name} href={item.href} name={item.name} />
+                )}
+              </div>
             ))}
           </div>
         </div>
         <div className="hidden md:flex">
-          <button className="bg-bgColor text-tColor px-16  py-2 rounded-4xl hover:bg-tColor hover:text-bgColor">
+          <button className="bg-bgColor text-tColor px-16 py-2 rounded-4xl hover:bg-tColor hover:text-bgColor">
             Explore More
           </button>
         </div>
@@ -39,6 +57,7 @@ const Navbar: React.FC = () => {
           {isOpen ? "" : <FaBars />}
         </button>
       </div>
+
       <div
         className={`md:hidden fixed top-0 left-0 w-full bg-btnColor text-white p-4 transition-transform duration-500 ease-in-out z-40 ${
           isOpen ? "translate-x-0 opacity-100" : "-translate-x-full opacity-0"
@@ -59,12 +78,18 @@ const Navbar: React.FC = () => {
         <div className="flex flex-col mt-16 font-bold uppercase">
           <Logo />
           {navItems.map((item) => (
-            <NavItem
-              key={item.name}
-              href={item.href}
-              name={item.name}
-              onClick={handleToggle}
-            />
+            <div key={item.name} className="relative">
+              {item.dropdown ? (
+                <Dropdown label={item.name} items={item.dropdown} />
+              ) : (
+                <NavItem
+                  key={item.name}
+                  href={item.href}
+                  name={item.name}
+                  onClick={handleToggle}
+                />
+              )}
+            </div>
           ))}
           <button className="bg-bgColor hover:bg-dBtn hover:text-bgColor text-tColor px-4 py-2 rounded-4xl mt-4 mx-auto">
             Explore More
